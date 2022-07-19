@@ -6,4 +6,4 @@ The application uses [React-Query](https://tanstack.com/query/v4/?from=reactQuer
 
 The async calls were done using the [Axios](https://axios-http.com/docs/intro) library.
 
-![high-low-chart.png](https://github.com/madhavms/high-low-chart/blob/master/images/high-low-chart.png)
+![high-low-chart.png]([https://github.com/madhavms/high-low-chart/blob/master/images/high-low-chart.png](https://github.com/madhavms/high-low-chart/blob/master/images/high%20low%20chart.gif))
