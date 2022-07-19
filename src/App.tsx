@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import PriceChart from './components/PriceChart'
+import fetchData from './utils/fetchData';
+import { useQuery } from "react-query";
+
 
 function App() {
+
+  const {data, status ,error}:any = useQuery("prices", () => fetchData('data.json'));
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {status === 'loading' && (
+            <h1>Loading....</h1>
+        )}
+      {status === 'success' && (
+          <PriceChart {...{data, status ,error}}/>
+        )}
+      {status === 'error' && (
+            <h1>{error.message}</h1>
+        )} 
     </div>
   );
 }
