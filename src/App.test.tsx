@@ -7,6 +7,7 @@ import App from "./App";
 let mockStatus = "";
 let mockData: Array<string> = [];
 
+//mocks the react-query library
 jest.mock("react-query", () => {
   return {
     __esModule: true,
