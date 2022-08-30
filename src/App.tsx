@@ -1,27 +1,29 @@
 import './App.css';
-import PriceChart from './components/charts/PriceChart'
+import {Chart} from './chart/Chart'
 import fetchData from './utils/fetchData';
 import { useQuery } from "react-query";
-import Loader from './components/loader/Loader';
-import Error from './components/error/Error';
+import Loader from './loader/Loader';
+import {Error} from './error/Error';
 
 
 function App() {
 
-  const {data, status ,error}:any = useQuery("prices", () => fetchData('dat.json'));
-  console.log(status,data,error);
+  const {data, status ,error}:any = useQuery("prices", () => fetchData('data.json'));
+
+  if (status === "loading") {
+    return <Loader />;
+  }
+
+  if (status === "error") {
+    return <Error />;
+  }
+
   return (
-    <div className="App">
-      {status === 'loading' && (
-            <Loader/>
-        )}
-      {status === 'success' && (
-          <PriceChart {...{data, status ,error}}/>
-          
-        )}
-      {status === 'error' && (
-            <Error/>
-        )} 
+    <div className="App"> 
+    <h1 className="text-3xl bg-blue-400 px-1 py-1">
+        SPY Financial Data Chart
+      </h1>
+    {data && data.length && <Chart data = {data}/>}
     </div>
   );
 }
