@@ -1,7 +1,4 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-
-
 import App from "./App";
 
 let mockStatus = "";
@@ -17,10 +14,11 @@ jest.mock("react-query", () => {
   };
 });
 
-jest.mock("./chart", () => {
+// Create a mock implementation of the chart library
+jest.mock('./chart/Chart', () => {
   return {
     __esModule: true,
-    Chart: () => <div>Chart Rendered</div>,
+    default: () => <div>Chart Rendered</div>,
   };
 });
 
@@ -43,11 +41,11 @@ describe("Chart-UI", () => {
     expect(errorElement).toBeInTheDocument();
   });
 
-  test("renders chart", () => {
+  test("renders chart", async () => {
     mockStatus = "";
     mockData = ["chart Data"];
-    render(<App />);
-    const chartElement = screen.getByText(/Chart Rendered/i);
-    expect(chartElement).toBeInTheDocument();
+    const { findByText } = render(<App />);
+    const element = await findByText(/Chart Rendered/i);
+    expect(element).toBeInTheDocument();
   });
 });
