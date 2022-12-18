@@ -2,8 +2,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from 'highcharts-react-official';
 import getOptions from '../utils/getOptions';
 
-export const Chart = ({data} :any) => {
-
+const Chart = ({data} :any) => {
  return(
     <HighchartsReact
         constructorType={"stockChart"}
@@ -12,4 +11,6 @@ export const Chart = ({data} :any) => {
     />
     )
 }
+
+export default Chart;
 
